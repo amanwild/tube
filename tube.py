@@ -1,12 +1,17 @@
 from random import randrange
 import os
+
+# Import everything needed to edit video clips
+from moviepy.editor import *
+import moviepy.editor as mpe
+
 # for single video download
 from pytube import YouTube
 import random  
 import string  
 
 
-link = "https://www.youtube.com/watch?v=xR3V5Ow2dTI&list=RDXJoFZQqTZ5g&index=3"
+link = "https://www.youtube.com/watch?v=LMxtOuXX6VI&list=RDXJoFZQqTZ5g&index=5"
 
 youtube = YouTube(link)
 Title =youtube.title
@@ -19,7 +24,6 @@ vid = list(enumerate(videos))
 reslist = []#For Storing All Available resulation
 a = 0
 
-print(videos[len(vid)-1])
 
 for i in vid:
     print(i)
@@ -53,12 +57,36 @@ maxx = max(indices)
 code = ''.join((random.choice(string.ascii_lowercase) for x in range(3))) # run loop until the define length
 print(code)
 
-videos[(len(vid)-1)].download(r"D:/vdo from tube")
+src =r"D:/vdo from tube/"
 
-os.rename(r"D:/vdo from tube/"+videos[len(vid)-1].default_filename, r"D:/vdo from tube/"+str(code)+" "+videos[len(vid)-1].default_filename)
+audio_index = (videos[len(vid)-1])
+ado = src+audio_index.default_filename
+upado = src+str(code)+" "+audio_index.default_filename
 
-# videos[maxx].download("C:/videos")
-# os.rename(videos[maxx].default_filename, str(code)+youtube.title.default_filename)
+video_index = (videos[maxx])
+vdo = src+video_index.default_filename
+upvdo = src+str(code)+" "+video_index.default_filename
+
+
+audio_index.download(src)
+os.rename(ado, upado)
+
+videos[maxx].download(src)
+os.rename(vdo,upvdo)
+
+# upado= src+str(code)+" "+ado.default_filename
+# upvdo= src+str(code)+" "+vdo.default_filename
+
+# my_clip = mpe.VideoFileClip(src+str(code)+" "+vdo.default_filename)
+# audio_background = mpe.AudioFileClip(src+str(code)+" "+ado.default_filename)
+# final_clip = my_clip.set_audio(audio_background)
+# final_clip.write_videofile(src+str(code)+" OUT "+vdo.default_filename)
+
+# clip = VideoFileClip("dsa_geek.mp4")
+# clip = clip.subclip(0, 5)
+# audioclip = AudioFileClip("allwell.mp3").subclip(0, 5)
+# videoclip = clip.set_audio(audioclip)
+# videoclip.ipython_display()
 
 print("Successfully Download")
 ##################################################################################
