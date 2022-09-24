@@ -1,12 +1,23 @@
+from moviepy.editor import *
 from random import randrange
 import os
+import ffmpeg
+
+# Import everything needed to edit video clips
+from moviepy.editor import *
+import moviepy.editor as mpe
+
 # for single video download
 from pytube import YouTube
-import random  
-import string  
+import random
+import string
 
 
-link = "https://www.youtube.com/watch?v=xR3V5Ow2dTI&list=RDXJoFZQqTZ5g&index=3"
+import os
+
+
+
+link = "https://www.youtube.com/watch?v=UPKzsG0pAUo"
 
 youtube = YouTube(link)
 Title =youtube.title
@@ -19,13 +30,12 @@ vid = list(enumerate(videos))
 reslist = []#For Storing All Available resulation
 a = 0
 
-print(videos[len(vid)-1])
 
 for i in vid:
     print(i)
     
 for i in vid:
-    #Geting all metadata form vid
+    # Geting all metadata form vid
     tupl = list(i)
     strtupl = str(tupl[1])
     metalist = list(strtupl.split())
@@ -38,9 +48,9 @@ for i in vid:
 print(reslist, " After append")
 # maxx = reslist.index(max( int(i) for i in reslist))
 
-#max resulation
+# max resulation
 max_value = max(reslist)
-#index of max resulation
+# index of max resulation
 max_indes = reslist.index(max_value)
 print(max_indes, " index ", max(reslist), "max index res")
 
@@ -53,12 +63,34 @@ maxx = max(indices)
 code = ''.join((random.choice(string.ascii_lowercase) for x in range(3))) # run loop until the define length
 print(code)
 
-videos[(len(vid)-1)].download(r"D:/vdo from tube")
+src =r"D:/vdo from tube/"
+# src =r"D:/vdo from tube/"
 
-os.rename(r"D:/vdo from tube/"+videos[len(vid)-1].default_filename, r"D:/vdo from tube/"+str(code)+" "+videos[len(vid)-1].default_filename)
+audio_index = (videos[len(vid)-1])
+ado = src+audio_index.default_filename
+upado = src+str(code)+" a "+audio_index.default_filename
 
-# videos[maxx].download("C:/videos")
-# os.rename(videos[maxx].default_filename, str(code)+youtube.title.default_filename)
+video_index = (videos[maxx])
+vdo = src+video_index.default_filename
+upvdo = src+str(code)+" v "+video_index.default_filename
+
+
+audio_index.download(src)
+os.rename(ado, upado)
+
+videos[maxx].download(src)
+os.rename(vdo,upvdo)
+
+# ffmpeg -i upado -i upvdo -c:v copy -c:a copy output.mkv
+# upado= src+str(code)+" "+ado.default_filename
+# upvdo= src+str(code)+" "+vdo.default_filename
+
+# my_clip = mpe.VideoFileClip(src+str(code)+" "+vdo.default_filename)
+# audio_background = mpe.AudioFileClip(src+str(code)+" "+ado.default_filename)
+# final_clip = my_clip.set_audio(audio_background)
+# final_clip.write_videofile(src+str(code)+" OUT "+vdo.default_filename)
+
+
 
 print("Successfully Download")
 ##################################################################################
