@@ -83,6 +83,16 @@ while (os.path.exists(osrc)):
     i += 1;
     print(osrc,"  :::::::::::updated name")
     
+osrc = src+Title+".webm"
+i=1
+print(osrc," :::::::::::Before name")
+while (os.path.exists(osrc)):
+    print("\n Video Exist\n")
+    osrc = src+Title+"("+str(i)+")"+".webm";
+    i += 1;
+    print(osrc,"  :::::::::::updated name")
+    
+    
 audio_index.download(src)
 os.rename(ado, upado)
 print("\n Audio Successfully Download \n")
