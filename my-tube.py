@@ -13,19 +13,25 @@ from pytube import YouTube
 import random
 import string
 
-link = "https://www.youtube.com/shorts/2cPmUOzJtmk"
+link = "https://www.youtube.com/watch?v=n5vLzoLEUhc"
 youtube = YouTube(link)
-Title =youtube.title
+Title =(youtube.title).replace('"','')
+Title =Title.replace('|','')
 print("\n Title : ", Title)
+
 
 # videos =youtube.streams.filter(only_video=True)#it give all formates
 videos = youtube.streams.all()  # it give all formates
 vid = list(enumerate(videos))
 reslist = []#For Storing All Available resulation
 a = 0
-
-# for i in vid:
-#     print(i)
+def delete(a,v):
+    os.remove(a)                             
+    os.remove(v)                             
+    print('Mixing Done')
+    
+for i in vid:
+    print(i)
     
 for i in vid:
     # Geting all metadata form vid
@@ -36,7 +42,8 @@ for i in vid:
     tyvi = 'type="video">'
     if (metalist[-1] == tyvi):
         res = ''.join(filter(lambda i: i.isdigit(), metalist[3]))
-        reslist.append(int(res))
+        if res!="":
+            reslist.append(int(res))
         
 print(reslist, " Full Resulation list (After append)")
 # maxx = reslist.index(max( int(i) for i in reslist))
@@ -66,20 +73,17 @@ asrc = PureWindowsPath(f"D:\\vdo from tube\\"+str(code)+" a "+audio_index.defaul
 #Video path for cmd line
 vsrc = PureWindowsPath(f"D:\\vdo from tube\\"+str(code)+" v "+video_index.default_filename)
 #OUTput path for cmd line
-osrc = (src+video_index.default_filename)
-print('D:/vdo from tube/STRUGGLE HARD 😎🔥WhatsApp Status shorts Billionaire Attitude Status🔥motivation quotes.webm')
+osrc = (src+Title+".webm")
+
+print('D://vdo from tube//STRUGGLE HARD 😎🔥WhatsApp Status shorts Billionaire Attitude Status🔥motivation quotes.webm')
 
 print(os.path.isfile(osrc))
-
 i=1
 print(osrc," :::::::::::Before name")
 while (os.path.exists(osrc)):
     print("\n Video Exist\n")
-    # osrc = f"{osrc} ({i})"
-    osrc = osrc + i.ToString();
-    # osrc = str(osrc).rename(".",f"({i}).")
-    
-    i = i + 1;
+    osrc = src+Title+str(i)+".mp4";
+    i += 1;
     print(osrc,"  :::::::::::updated name")
 
 audio_index.download(src)
@@ -107,18 +111,17 @@ print("Created file Audio :: "+str(upado)+"\n"+
 # print(os.path.isfile(f"D:/vdo from tube/STRUGGLE HARD 😎🔥WhatsApp Status shorts Billionaire Attitude Status🔥motivation quotes.webm"))
 
 # if osrc.is_file(str(fname)):
-#     print("\n  if Video Exist\n")
-    
-print(f"{osrc}")
+#     print("\n  if
 
 print("\n NOT  Exist\n")
 
 # cmd = '-i "ring.webm" -i "rings.webm" -c copy "outpfut.mkv"'
+Title=str(Title)
 os.system(f'ffmpeg -i "{vsrc}" -i "{asrc}" -c copy "{osrc}"')  
-os.remove(asrc)                             
-os.remove(vsrc)                             
-print('Mixing Done')
 
+
+
+delete(asrc,vsrc)
 
 
 
