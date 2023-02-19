@@ -22,7 +22,7 @@ import random
 import string
 
 # link = "https://youtube.com/playlist?list=PLFr_jkwUp0hhm1lR1TSdgESOfoyLQR3t2"
-link = "https://youtube.com/playlist?list=PLgOUQYMnO_STuEpuiUHh7NXCQuw5igXnP"
+link = "https://youtube.com/playlist?list=PLT9miexWCpPXtHIZmS_Yn1IGpgcEoVqZr"
 # https://www.youtube.com/live/-gqNTmPv66s?feature=share
 # youtube = pytube.YouTube(link)  
 # video = youtube.streams.first()  
@@ -315,12 +315,11 @@ def Processing(vid,no):
   no_ = no
   Title = checkTitle(vid.title)
   no_ =str(no)
-  print("here ", no_)
  
   # osrc = (src+no_+"*"+Title+"*")
   osrc = (src+no_+"*"+Title+"*")
 
-  exist = 0    
+  exist = 0
   for item in glob.glob(osrc):
     print("\nAlready Exists :",no_,vid.title)
     exist = 1
@@ -362,9 +361,9 @@ def Welcome():
   global attempt
   file = "vdo from tube"
   src =r"C:/"+file+"/" 
-  print("Welcome to MyTube")
   
 try:
+  print("Welcome to MyTube")
   youtube = Playlist(link)
   print(f'Playlist: {youtube.title}')
   #limit for resuletion under 1080 
@@ -376,6 +375,7 @@ try:
   cond = 0
   global no
   no=0
+
 #   print(len(youtube.video_urls))
 
   # print("WELCOME to TUBE", vid in youtube.videos)

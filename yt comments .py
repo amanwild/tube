@@ -18,7 +18,7 @@ import ffmpeg
 import moviepy.editor as mpe
 from pytube import YouTube
 
-link = "https://youtube.com/shorts/LDa5iOlarJg?feature=share"
+link = "https://youtube.com/shorts/ByVonzqiF20?feature=share"
 try:
     youtube = Playlist(link)
     print(f'Playlist: {youtube.title}')

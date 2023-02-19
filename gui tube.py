@@ -411,17 +411,17 @@ import sys
 is_paused = is_cancelled = False
 
 
-def progress_function(chunk, file_handle, bytes_remaining):
-    global filesize
-    current = ((filesize - bytes_remaining)/filesize)
-    percent = ('{0:.1f}').format(current*100)
-    progress = int(50*current)
-    status = '█' * progress + '-' * (50 - progress)
-    sys.stdout.write(' ↳ |{bar}| {percent}%\r'.format(bar=status, percent=percent))
-    sys.stdout.flush()
-yt_obj = YouTube("https://youtube.com/shorts/rtxxEIW5VX0?feature=share", on_progress_callback = progress_function)
+# def progress_function(chunk, file_handle, bytes_remaining):
+#     global filesize
+#     current = ((filesize - bytes_remaining)/filesize)
+#     percent = ('{0:.1f}').format(current*100)
+#     progress = int(50*current)
+#     status = '█' * progress + '-' * (50 - progress)
+#     sys.stdout.write(' ↳ |{bar}| {percent}%\r'.format(bar=status, percent=percent))
+#     sys.stdout.flush()
+# yt_obj = YouTube("https://youtube.com/shorts/rtxxEIW5VX0?feature=share", on_progress_callback = progress_function)
 
-yt_obj.streams.filter(progressive=True, file_extension='mp4').get_highest_resolution().download(output_path='C:/vdo from tube', filename='MyVideo')
+# yt_obj.streams.filter(progressive=True, file_extension='mp4').get_highest_resolution().download(output_path='C:/vdo from tube', filename='MyVideo')
 def download_video(url):
     global is_paused, is_cancelled
     download_button['state'] ='disabled'
